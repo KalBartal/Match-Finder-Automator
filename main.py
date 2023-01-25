@@ -12,6 +12,9 @@ from selenium.webdriver.common.by import By
 import time
 import random
 
+random_wait = random.randint(3, 8)
+driver = webdriver.Chrome()
+
 # Creating main window
 window = tk.Tk()
 window.config(pady=20, padx=40)
@@ -40,19 +43,17 @@ input_password.grid(column=1, row=3)
 
 # Defining click event function
 def login():
-    EMAIL = input_email.get()
-    PASSWORD = input_password.get()
-    random_wait = random.randint(3, 8)
-    driver = webdriver.Chrome()
+    email = input_email.get()
+    password = input_password.get()
     driver.get("https://uk.match.com")
     time.sleep(random_wait)
     driver.find_element(By.XPATH, '//*[@id="onetrust-accept-btn-handler"]').click()
     time.sleep(random_wait)
     driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/div[3]/button[2]').click()
     time.sleep(random_wait)
-    driver.find_element(By.XPATH, '//*[@id="login-form-email-input"]').send_keys(EMAIL)
+    driver.find_element(By.XPATH, '//*[@id="login-form-email-input"]').send_keys(email)
     time.sleep(random_wait)
-    driver.find_element(By.XPATH, '//*[@id="login-form-password-input"]').send_keys(PASSWORD)
+    driver.find_element(By.XPATH, '//*[@id="login-form-password-input"]').send_keys(password)
     time.sleep(random_wait)
     driver.find_element(By.XPATH, '//*[@id="main-frame"]/div[1]/div[2]/form/button').click()
     time.sleep(15)
@@ -60,7 +61,7 @@ def login():
     while True:
         driver.get("https://uk.match.com/d/shuffle-kiss/online?fullScreen=true")
         time.sleep(random_wait)
-        driver.find_element(By.XPATH, '/html/body/div[1]/dating-wrapper/div/shuffle/shuffle-page-kiss/div/div/div['
+        driver.find_element(By.XPATH, '/html/body/div[1]/dating-wrapper/div/shuffle-page-kiss/div/div/div/div['
                                       '2]/div/div[3]/div[1]/div/div[2]/div/div[4]/div/div/div/button').click()
         time.sleep(random_wait)
 
